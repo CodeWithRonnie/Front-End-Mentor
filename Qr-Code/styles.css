@@ -1,0 +1,36 @@
+body{
+    background: thistle;
+    font-size: 15px;
+}
+
+.container{
+    padding: 40px 40px;
+    width: 500px;
+    margin: 0 auto;
+    background-color: aliceblue;
+    color: black;
+    border-radius: 20px;
+}
+
+ img{
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+
+}
+
+h1, p{
+    text-align: center;
+    margin-left: 45px
+}
+h1{
+    color: ;
+    width: 80%;
+}
+ p{
+    color: hsl(216, 15%, 48%);
+    width: 79%;
+    font-size: 26px;
+ }
