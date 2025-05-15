@@ -1,5 +1,5 @@
 body{
-    background: thistle;
+    background:  hsl(212, 45%, 89%);
     font-size: 15px;
 }
 
@@ -10,7 +10,14 @@ body{
     background-color: aliceblue;
     color: black;
     border-radius: 20px;
+    font-family: "Outfit", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100px;
+    font-style: normal;
 }
+
+
+
 
  img{
     width: 100%;
@@ -26,11 +33,19 @@ h1, p{
     margin-left: 45px
 }
 h1{
-    color: ;
     width: 80%;
 }
  p{
     color: hsl(216, 15%, 48%);
-    width: 79%;
-    font-size: 26px;
+    width: 75%;
+    font-size: 20px;
+    margin-left: 50px;
+ }
+
+ @media only screen and (max-width: 600px ) {
+        body{
+    background:  hsl(212, 45%, 89%);
+    font-size: 15px;
+}
+    
  }
