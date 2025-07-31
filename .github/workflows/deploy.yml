@@ -4,22 +4,20 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Build job
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -35,25 +33,23 @@ jobs:
         run: |
           cd react-version
           npm ci
-        
+          
       - name: Build
         run: |
           cd react-version
           npm run build
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './react-version/dist'
-  
-  # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+          
+      - name: Prepare docs folder
+        run: |
+          # Create docs directory if it doesn't exist
+          mkdir -p docs
+          # Copy build files to docs directory
+          cp -r react-version/dist/* docs/
+          # Ensure .nojekyll file exists
+          touch docs/.nojekyll
+          
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: 'docs'
+          branch: 'gh-pages'
