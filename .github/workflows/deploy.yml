@@ -32,12 +32,14 @@ jobs:
           cache: 'npm'
           
       - name: Install dependencies
-        run: npm ci
-        working-directory: ./react-version
+        run: |
+          cd react-version
+          npm ci
         
       - name: Build
-        run: npm run build
-        working-directory: ./react-version
+        run: |
+          cd react-version
+          npm run build
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
